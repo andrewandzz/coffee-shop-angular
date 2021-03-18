@@ -1,0 +1,7 @@
+<h1 class="title">Take your favorite coffee</h1>
+<div class="content">
+  <app-coffee-list (coffeeClick)="createCoffee.open($event)"></app-coffee-list>
+  <app-cart #cart (itemClick)="updateCoffee.open($event)"></app-cart>
+</div>
+<app-create-coffee #createCoffee (orderItemCreated)="cart.updateItems()"></app-create-coffee>
+<app-update-coffee #updateCoffee (orderItemUpdated)="cart.updateItems()"></app-update-coffee>

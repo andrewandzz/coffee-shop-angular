@@ -1,0 +1,31 @@
+<div class="image">
+  <img src="/assets/images/{{ item.coffee.image }}" />  
+</div>
+
+<div class="description">
+  <div class="description-title">
+    <div>
+      <span class="description-title-name">{{ item.coffee.name }}</span>
+      <span class="description-title-volume">{{ item.coffee.volume }}</span>
+    </div>
+
+    <div *ngIf="removable" class="remove-button" (click)="handleButtonClick($event)">
+      <div class="remove-button-line-1">
+        <div class="remove-button-line-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="description-body">
+    <div class="description-body-addins">
+      <ul>
+        <li>{{ item.sugar > 0 ? item.sugar + " tsp of sugar" : "No sugar" }}</li>
+        <li>{{ item.cupCap ? "Cup cap" : "No cup cap" }}</li>
+      </ul>
+    </div>    
+  </div>
+  
+  <div class="description-price">
+    {{ item.coffee.price | currency: "USD":"symbol":".0-2" }}
+  </div>
+</div>

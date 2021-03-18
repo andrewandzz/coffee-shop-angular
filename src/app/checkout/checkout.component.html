@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="title">Add info about you</h1>
+  <div class="content">
+    <app-form #formComponent></app-form>
+    <app-order></app-order>
+  </div>
+  <app-button
+    class="button"
+    [fontSize]="'1.75rem'"
+    [disabled]="formComponent.form.invalid"
+    (click)="submit(formComponent.form)"
+  >
+    Confirm order
+  </app-button>
+</div>
+<app-thanks></app-thanks>

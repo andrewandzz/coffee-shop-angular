@@ -1,0 +1,61 @@
+<div class="container">
+  <form [formGroup]="form">
+    <div class="form-element">
+      <div class="control-header">
+        <label for="name" class="form-label">Your name</label>
+        <span
+          *ngIf="
+            form.controls.customerName.touched &&
+            form.controls.customerName.invalid
+          "
+          class="invalid"
+          >Name is required</span
+        >
+      </div>
+
+      <input
+        [class.invalid]="
+          form.controls.customerName.touched &&
+          form.controls.customerName.invalid
+        "
+        formControlName="customerName"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Andrew"
+        maxlength="30"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="form-element">
+      <div class="control-header">
+        <label for="phone" class="form-label">Your phone (optionally)</label>
+        <span
+          *ngIf="
+            form.controls.customerPhone.touched &&
+            form.controls.customerPhone.invalid
+          "
+          class="invalid"
+          >Invalid phone format</span
+        >
+      </div>
+      <div class="phone-control">
+        <div class="phone-plus-sign" [class.active]="form.controls.customerPhone.value !== null">+</div>
+        <input
+          [class.invalid]="
+            form.controls.customerPhone.touched &&
+            form.controls.customerPhone.invalid
+          "
+          formControlName="customerPhone"
+          type="number"
+          name="phone"
+          id="phone"
+          placeholder="14447775533"
+          autocomplete="off"
+          (keydown)="handlePhoneKeyDown($event)"
+        />
+      </div>
+    </div>
+  </form>
+</div>

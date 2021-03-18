@@ -1,0 +1,11 @@
+<app-overlay></app-overlay>
+<div class="container" @animate *ngIf="isVisible">
+  <h1>
+    Thank you for your order!<br />
+    We are preparing it.<br />
+    In the meantime you can go home.
+  </h1>
+  <a routerLink="/">
+    <app-button class="button">Go home</app-button>
+  </a>
+</div>

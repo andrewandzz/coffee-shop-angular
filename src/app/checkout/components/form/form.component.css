@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 560px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  font-family: "Nunito Sans", sans-serif;
+  color: #333333;
+}
+
+span.invalid {
+  color: #f28841;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.7em 1em;
+  border-radius: 0.3em;
+  border: 1px solid #cccccc;
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  outline: none;
+  transition: border 0.15s;
+  color: #333333;
+  line-height: 1;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #aaaaaa;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border: 1px solid #999999;
+}
+
+input[type="text"].invalid,
+input[type="number"].invalid {
+  border: 1px solid #f28841;
+}
+
+.form-element {
+  margin-bottom: 1.4rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.control-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.phone-control {
+  position: relative;
+}
+
+.phone-plus-sign {
+  position: absolute;
+  color: #aaaaaa;
+  font-size: 1.1rem;
+  height: 100%;
+  left: 0.8em;
+  line-height: 1;
+  padding-top: 0.82em;
+}
+
+.phone-control input {
+  padding-left: 1.6em;
+}
+
+.phone-plus-sign.active {
+  color: #222222;
+}

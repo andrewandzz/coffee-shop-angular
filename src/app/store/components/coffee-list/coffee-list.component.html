@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="card" *ngFor="let coffee of coffees" (click)="handleClick(coffee.name)">
+    <img class="card-image" src="assets/images/{{ coffee.image }}" />
+    <h2 class="card-title">{{ coffee.name }}</h2>
+    <div class="card-price">{{ coffee.price | currency:'USD':'symbol':'.0-2' }}</div>
+  </div>
+</div>

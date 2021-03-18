@@ -1,0 +1,42 @@
+<app-overlay (click)="close()"></app-overlay>
+
+<div class="container" @animate *ngIf="isVisible">
+  <div class="close-button" (click)="close()">
+    <div class="close-button-line-1">
+      <div class="close-button-line-2"></div>
+    </div>
+  </div>
+
+  <h1 class="title">{{ name }}</h1>
+
+  <img class="image" src="/assets/images/{{ image }}" />
+
+  <div class="body-customization">
+    <form class="body-customization-form" [formGroup]="form">
+      <div class="form-element">
+        <label class="form-label">Volume</label>
+        <div class="volume" *ngFor="let volume of volumes; let i = index">
+          <input type="radio" id="{{i}}" formControlName="volume" value="{{volume}}">
+          <label for="{{i}}">{{volume}}</label>
+        </div>
+      </div>
+
+      <div class="form-element">
+        <label class="form-label">Sugar</label>
+        <div class="range">
+          <app-range-control class="range-input" [min]="0" [max]="3" formControlName="sugar"></app-range-control>
+          <span class="range-label">{{form.controls.sugar.value > 0 ? form.controls.sugar.value + ' tsp' : 'No sugar'}}</span>
+        </div>
+      </div>
+
+      <div class="form-element">
+        <input class="checkbox" type="checkbox" formControlName="cupCap" id="cupCap" />
+        <label for="cupCap">Cup cap</label>
+      </div>
+    </form>
+
+    <h2 class="body-customization-price">{{ price | currency: "USD":"symbol":".0-2" }}</h2>
+  </div>
+
+  <app-button class="button" [disabled]="form.invalid" (click)="handleButtonClick()">{{ buttonText }}</app-button>
+</div>

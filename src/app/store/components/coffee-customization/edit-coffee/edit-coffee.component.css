@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  position: fixed;
+  display: flex;
+  top: 100px;
+  width: 440px;
+  padding: 20px 24px 24px;
+  background-color: #ffffff;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+  font-family: "Nunito Sans", sans-serif;
+  z-index: 101;
+}
+
+.close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  width: 1.6rem;
+  height: 1.6rem;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.15s ease-out;
+}
+
+.close-button:hover {
+  opacity: 1;
+}
+
+.close-button-line-1 {
+  height: 1.6rem;
+  width: 2px;
+  background-color: #444444;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+.close-button-line-2 {
+  height: 1.6rem;
+  width: 2px;
+  background-color: #444444;
+  transform: rotate(90deg);
+  z-index: 2;
+}
+
+.title {
+  line-height: 1.1;
+  font-size: 2rem;
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 15px;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  /* background-color: chocolate; */
+}
+
+.image {
+  width: 340px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+  margin: 0 auto 25px;
+}
+
+.body-customization {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-left: 15px;
+  /* background-color: cyan; */
+}
+
+.body-customization-form {
+  flex-grow: 1;
+  /* background-color: darkgoldenrod; */
+}
+
+.form-element {
+  margin-bottom: 1.4rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.volume {
+  margin: 5px 0;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+
+input[type="checkbox"] + label::before,
+input[type="radio"] + label::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid #cccccc;
+  margin-right: 0.5em;
+  flex: 0 0 1.25rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+input[type="checkbox"] + label::before {
+  border-radius: 4px;
+  background-size: 65% 65%;
+}
+
+input[type="radio"] + label::before {
+  border-radius: 50%;
+  background-size: 60% 60%;
+}
+
+input[type="checkbox"]:checked + label::before {
+  border-color: #f2b041;
+  background-color: #f2b041;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+input[type="radio"]:checked + label::before {
+  border-color: #f2b041;
+  background-color: #f2b041;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+input[type="checkbox"]:active + label::before,
+input[type="radio"]:active + label::before {
+  border-color: #f2cc8d;
+  background-color: #f2cc8d;
+}
+
+.form-element .range {
+  display: flex;
+  align-items: center;
+}
+
+.range-input {
+  width: 150px;
+}
+
+.range-label {
+  margin-left: 1rem;
+}
+
+.body-customization-price {
+  font-size: 1.6rem;
+  text-align: end;
+  /* background-color: darkkhaki; */
+}
+
+.button {
+  margin: 20px auto 10px;
+}

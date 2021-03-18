@@ -1,0 +1,19 @@
+<div class="container">
+  <ng-template [ngIf]="items !== null && items.length > 0">
+    <h1 class="title">Your order</h1>
+
+    <ng-template ngFor let-item [ngForOf]="items" let-i="index">
+      <app-cart-item class="item" [item]="item" [removable]="false"></app-cart-item>
+      <hr *ngIf="i < items.length - 1" />
+    </ng-template>
+
+    <div class="total">
+      <h1>Total</h1>
+      <h1>{{ total | currency: "USD":"symbol":".0-2" }}</h1>
+    </div>
+
+    <a routerLink="/store" class="button">
+      <app-button>Edit items</app-button>
+    </a>
+  </ng-template>
+</div>

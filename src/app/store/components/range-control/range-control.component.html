@@ -1,0 +1,14 @@
+<div class="track" #track></div>
+<div class="fill" #fill></div>
+<input
+  type="range"
+  min="{{ min }}"
+  max="{{ max }}"
+  [(ngModel)]="value"
+  [disabled]="isDisabled"
+  (ngModelChange)="onChange($event)"
+  (blur)="onTouched()"
+  (mousedown)="onMouseDown()"
+  (mouseup)="onMouseUp()"
+  #input
+/>
