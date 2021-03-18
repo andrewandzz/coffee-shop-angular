@@ -29,6 +29,7 @@ export class UpdateCoffeeComponent extends EditCoffeeComponent {
   public orderItemUpdated: EventEmitter<void>;
 
   private orderItem: OrderItem;
+  private isWaitingForResponse: boolean;
 
   public constructor(
     coffeeService: CoffeeService,
@@ -39,6 +40,7 @@ export class UpdateCoffeeComponent extends EditCoffeeComponent {
 
     this.orderItemUpdated = new EventEmitter<void>();
     this.buttonText = 'Save';
+    this.isWaitingForResponse = false;
   }
 
   public open(orderItem: OrderItem): void {
@@ -59,6 +61,10 @@ export class UpdateCoffeeComponent extends EditCoffeeComponent {
   }
 
   public handleButtonClick(): void {
+    if (this.isWaitingForResponse === true) {
+      return;
+    }
+
     if (this.form.pristine) {
       this.close();
       return;
@@ -70,9 +76,12 @@ export class UpdateCoffeeComponent extends EditCoffeeComponent {
       cupCap: this.form.controls.cupCap.value
     } as UpdateOrderItem;
 
+    this.isWaitingForResponse = true;
+
     this.orderItemService.updateById(updateOrderItem, this.orderItem.id)
       .subscribe(_ => {
         this.close();
+        this.isWaitingForResponse = false;
         this.orderItemUpdated.emit();
       });
   }

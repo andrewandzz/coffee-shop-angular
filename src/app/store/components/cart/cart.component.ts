@@ -11,7 +11,7 @@ import { OrderItemService } from '../../../shared/services/order-item.service';
 export class CartComponent implements OnInit {
   @Output() public itemClick: EventEmitter<OrderItem>;
   public items: OrderItem[];
-  public total: number;
+  public totalPrice: number;
   public isVisible: boolean;
 
   private readonly orderItemService: OrderItemService;
@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
     this.customerGuidService = customerGuidService;
     this.itemClick = new EventEmitter<OrderItem>();
     this.items = null;
-    this.total = 0;
+    this.totalPrice = 0;
     this.isVisible = false;
   }
 
@@ -37,11 +37,7 @@ export class CartComponent implements OnInit {
     this.orderItemService.getAllByCustomerGuid(this.customerGuidService.getCustomerGuid())
       .subscribe(items => {
         this.items = items;
-
-        if (items.length > 0) {
-          this.total = items.map(item => item.coffee.price).reduce((prev, cur) => prev + cur);
-        }
-
+        this.updateTotalPrice();
         this.isVisible = true;
       });
   }
@@ -50,10 +46,15 @@ export class CartComponent implements OnInit {
     this.orderItemService.removeById(id)
       .subscribe(removedItem => {
         this.items = this.items.filter(item => item.id !== removedItem.id);
+        this.updateTotalPrice();
       });
   }
 
   public handleItemClick(item: OrderItem): void {
     this.itemClick.emit(item);
+  }
+
+  private updateTotalPrice(): void {
+    this.totalPrice = this.items.map(item => item.coffee.price).reduce((prev, cur) => prev + cur, 0);
   }
 }

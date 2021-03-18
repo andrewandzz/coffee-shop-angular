@@ -27,6 +27,8 @@ export class CreateCoffeeComponent extends EditCoffeeComponent {
   @Output()
   public orderItemCreated: EventEmitter<void>;
 
+  private isWaitingForResponse: boolean;
+
   public constructor(
     coffeeService: CoffeeService,
     orderItemService: OrderItemService,
@@ -36,6 +38,7 @@ export class CreateCoffeeComponent extends EditCoffeeComponent {
 
     this.orderItemCreated = new EventEmitter<void>();
     this.buttonText = 'Add to order';
+    this.isWaitingForResponse = false;
   }
 
   public open(coffeeName: string): void {
@@ -54,17 +57,28 @@ export class CreateCoffeeComponent extends EditCoffeeComponent {
   }
 
   public handleButtonClick(): void {
+    // if we are already waiting for the order item
+    // to be added to the order, then ignore redundant call
+    if (this.isWaitingForResponse === true) {
+      return;
+    }
+
     const newOrderItem = {
       coffeeId: this.coffeeVariants.find(coffee => coffee.volume === this.form.controls.volume.value).id,
       sugar: this.form.controls.sugar.value,
       cupCap: this.form.controls.cupCap.value
     } as CreateOrderItem;
 
+    // change state to waiting for response state
+    // to prevent making redundant requests
+    this.isWaitingForResponse = true;
+
     this.orderItemService.addForCustomerGuid(
       newOrderItem,
       this.customerGuidService.getCustomerGuid()
     ).subscribe(_ => {
       this.close();
+      this.isWaitingForResponse = false;
       this.orderItemCreated.emit();
     });
   }
