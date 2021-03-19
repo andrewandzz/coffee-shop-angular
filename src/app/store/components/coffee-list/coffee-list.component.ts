@@ -8,14 +8,14 @@ import { CoffeeService } from '../../services/coffee.service';
   styleUrls: ['./coffee-list.component.css']
 })
 export class CoffeeListComponent implements OnInit {
-  @Output() public coffeeClick: EventEmitter<string>;
+  @Output() public coffeeClicked: EventEmitter<string>;
   public coffees: Coffee[];
 
   private readonly coffeeService: CoffeeService;
 
   public constructor(productService: CoffeeService) {
     this.coffeeService = productService;
-    this.coffeeClick = new EventEmitter<string>();
+    this.coffeeClicked = new EventEmitter<string>();
   }
 
   public ngOnInit(): void {
@@ -24,6 +24,6 @@ export class CoffeeListComponent implements OnInit {
   }
 
   public handleClick(productName: string): void {
-    this.coffeeClick.emit(productName);
+    this.coffeeClicked.emit(productName);
   }
 }

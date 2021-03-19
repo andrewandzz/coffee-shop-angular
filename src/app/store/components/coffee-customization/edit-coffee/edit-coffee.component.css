@@ -7,15 +7,28 @@
   box-sizing: border-box;
 }
 
-:host {
+.wrapper {
   display: flex;
   justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.wrapper.active {
+  overflow-y: overlay;
+  pointer-events: all;
 }
 
 .container {
-  position: fixed;
+  position: absolute;
   display: flex;
-  top: 100px;
+  top: 7vh;
   width: 440px;
   padding: 20px 24px 24px;
   background-color: #ffffff;
@@ -23,7 +36,7 @@
   border-radius: 15px;
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
   font-family: "Nunito Sans", sans-serif;
-  z-index: 101;
+  z-index: 102;
 }
 
 .close-button {

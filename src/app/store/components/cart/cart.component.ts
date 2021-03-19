@@ -9,7 +9,7 @@ import { OrderItemService } from '../../../shared/services/order-item.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  @Output() public itemClick: EventEmitter<OrderItem>;
+  @Output() public itemClicked: EventEmitter<OrderItem>;
   public items: OrderItem[];
   public totalPrice: number;
   public isVisible: boolean;
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
   ) {
     this.orderItemService = orderItemService;
     this.customerGuidService = customerGuidService;
-    this.itemClick = new EventEmitter<OrderItem>();
+    this.itemClicked = new EventEmitter<OrderItem>();
     this.items = null;
     this.totalPrice = 0;
     this.isVisible = false;
@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
   }
 
   public handleItemClick(item: OrderItem): void {
-    this.itemClick.emit(item);
+    this.itemClicked.emit(item);
   }
 
   private updateTotalPrice(): void {

@@ -1,4 +1,4 @@
-import { Directive, ViewChild } from '@angular/core';
+import { Directive, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Coffee } from 'src/app/shared/interfaces/coffee.interface';
 import { CustomerGuidService } from 'src/app/shared/services/customer-guid.service';
@@ -11,6 +11,8 @@ import { FormInitials } from '../form-initials.interface';
 export abstract class EditCoffeeComponent {
   @ViewChild(OverlayComponent)
   public overlay: OverlayComponent;
+  @Output()
+  public closing: EventEmitter<void>;
   public coffeeVariants: Coffee[];
   public name: string;
   public image: string;
@@ -32,15 +34,22 @@ export abstract class EditCoffeeComponent {
     this.coffeeService = coffeeService;
     this.orderItemService = orderItemService;
     this.customerGuidService = customerGuidService;
+    this.closing = new EventEmitter<void>();
   }
 
   public abstract open(obj: any): void;
 
   public close(): void {
     this.hide();
+    this.closing.emit();
   }
 
   public abstract handleButtonClick(): void;
+
+  public handleContainerClick(event: MouseEvent): void {
+    // prevent event bubbling so that it would not trigger the wrapper's click handler
+    event.stopPropagation();
+  }
 
   protected show(): void {
     this.overlay.show();

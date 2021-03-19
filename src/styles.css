@@ -4,13 +4,14 @@
   box-sizing: border-box;
 }
 
-html {
-  overflow: overlay;
-}
-
 html,
 body {
+  overflow: overlay;
   height: 100%;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 .background {
