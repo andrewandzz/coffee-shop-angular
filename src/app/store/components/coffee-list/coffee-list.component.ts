@@ -16,6 +16,7 @@ export class CoffeeListComponent implements OnInit {
   public constructor(productService: CoffeeService) {
     this.coffeeService = productService;
     this.coffeeClicked = new EventEmitter<string>();
+    this.coffees = null;
   }
 
   public ngOnInit(): void {

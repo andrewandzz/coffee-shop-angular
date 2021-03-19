@@ -10,7 +10,7 @@ import { OrderItemService } from 'src/app/shared/services/order-item.service';
 })
 export class OrderComponent implements OnInit {
   public items: OrderItem[];
-  public total: number;
+  public totalPrice: number;
 
   private readonly orderItemService: OrderItemService;
   private readonly customerGuidService: CustomerGuidService;
@@ -22,7 +22,7 @@ export class OrderComponent implements OnInit {
     this.orderItemService = orderItemService;
     this.customerGuidService = customerGuidService;
     this.items = null;
-    this.total = 0;
+    this.totalPrice = 0;
   }
 
   public ngOnInit(): void {
@@ -30,10 +30,7 @@ export class OrderComponent implements OnInit {
       this.customerGuidService.getCustomerGuid()
     ).subscribe(items => {
       this.items = items;
-
-      if (items.length > 0) {
-        this.total = items.map(item => item.coffee.price).reduce((a, b) => a + b);
-      }
+      this.totalPrice = items.map(item => item.coffee.price).reduce((a, b) => a + b, 0);
     });
   }
 }

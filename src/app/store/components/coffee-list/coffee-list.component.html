@@ -1,4 +1,5 @@
 <div class="container">
+  <app-loading *ngIf="coffees === null"></app-loading>
   <div class="card" *ngFor="let coffee of coffees" (click)="handleClick(coffee.name)">
     <img class="card-image" src="assets/images/{{ coffee.image }}" />
     <h2 class="card-title">{{ coffee.name }}</h2>

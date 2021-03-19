@@ -1,5 +1,8 @@
-<div class="container">
-  <ng-template [ngIf]="items !== null && items.length > 0">
+<div class="wrapper">
+
+  <app-loading *ngIf="items === null"></app-loading>
+
+  <div class="container" *ngIf="items !== null && items.length > 0">
     <h1 class="title">Your order</h1>
 
     <ng-template ngFor let-item [ngForOf]="items" let-i="index">
@@ -9,11 +12,12 @@
 
     <div class="total">
       <h1>Total</h1>
-      <h1>{{ total | currency: "USD":"symbol":".0-2" }}</h1>
+      <h1>{{ totalPrice | currency: "USD":"symbol":".0-2" }}</h1>
     </div>
 
     <a routerLink="/store" class="button">
       <app-button>Edit items</app-button>
     </a>
-  </ng-template>
+  </div>
+
 </div>

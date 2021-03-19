@@ -6,11 +6,17 @@
   box-sizing: border-box;
 }
 
+.wrapper {
+  display: flex;
+  width: 340px;
+  min-height: 200px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 340px;
+  width: 100%;
   background-color: #ffffff;
   padding: 24px 22px;
   border-radius: 16px;
